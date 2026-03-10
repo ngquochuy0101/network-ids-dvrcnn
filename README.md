@@ -150,10 +150,10 @@ The application will open in your default browser at `http://localhost:8501`
 ### System Architecture
 
 ```
-┌─────────────────┐
-│   User Upload   │
-│   (CSV/TXT)     │
-└────────┬────────┘
+┌─────────────────────────────┐
+│   User Upload               │
+│   (CSV/TXT)                 │
+└────────┬────────────────────┘
          │
          ▼
 ┌─────────────────────────────┐
