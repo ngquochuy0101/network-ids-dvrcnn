@@ -1,0 +1,247 @@
+# ============================================================================
+# .gitignore - Updated for MLOps Production
+# ============================================================================
+
+# ============================================================================
+# Python
+# ============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ============================================================================
+# Jupyter Notebook
+# ============================================================================
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*.ipynb_checkpoints
+
+# ============================================================================
+# PyTorch Models & Checkpoints
+# ============================================================================
+# Ignore all model files EXCEPT the tracked ones
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# EXCEPTION: Keep production model
+!model/best_model.pt
+
+# ============================================================================
+# Preprocessor & Pipeline Files
+# ============================================================================
+# Ignore all pickle files EXCEPT tracked ones
+*.pkl
+*.pickle
+
+# EXCEPTION: Keep production preprocessor
+!plk/preprocessor.pkl
+
+# ============================================================================
+# Dataset Files (Large files - download separately)
+# ============================================================================
+# NSL-KDD dataset files
+dataset/*.csv
+dataset/*.txt
+dataset/*.arff
+
+# EXCEPTION: Keep README or download instructions
+!dataset/README.md
+!dataset/download_dataset.py
+
+# Processed data outputs
+dataset/out_*/
+dataset/*_processed.csv
+
+# ============================================================================
+# Test Results & Outputs
+# ============================================================================
+# Test output files
+test_results*.json
+test_results*.txt
+TEST_*.txt
+TEST_*.md
+
+# Temporary analysis results
+results/
+outputs/
+temp/
+
+# ============================================================================
+# Backup & Development Files
+# ============================================================================
+# Backup files
+*_backup.py
+*_backup_*.py
+*_old*.py
+*_before_*.py
+*_optimized.py
+*.bak
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# ============================================================================
+# IDE & Editor
+# ============================================================================
+# VSCode
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ============================================================================
+# Operating System
+# ============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================================================
+# Logs & Debugging
+# ============================================================================
+*.log
+logs/
+*.log.*
+log_*.txt
+
+# ============================================================================
+# Documentation (Generated)
+# ============================================================================
+# Sphinx documentation
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# MkDocs
+site/
+
+# ============================================================================
+# CI/CD & Deployment
+# ============================================================================
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Docker
+*.dockerfile.swp
+
+# Deployment configs (may contain secrets)
+.env
+.env.local
+.env.*.local
+secrets.yaml
+credentials.json
+
+# ============================================================================
+# MLOps Specific
+# ============================================================================
+# Experiment tracking
+mlruns/
+runs/
+wandb/
+.tensorboard/
+
+# Model artifacts (except tracked production models)
+artifacts/
+checkpoints/
+saved_models/
+!model/
+
+# Data versioning (DVC)
+.dvc/
+*.dvc
+
+# ============================================================================
+# GitHub Cleanup Planning (Temporary - Remove after cleanup)
+# ============================================================================
+GITHUB_CLEANUP_PLAN.md
+README_DRAFT.md
+GITIGNORE_DRAFT.txt
+
+# ============================================================================
+# Keep These (Examples)
+# ============================================================================
+# !important_file_to_keep.txt
+# !model/best_model.pt (already specified above)
+# !plk/preprocessor.pkl (already specified above)
