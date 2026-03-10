@@ -107,8 +107,8 @@ Evaluation on NSL-KDD Test+ dataset (22,544 samples):
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/network-ids.git
-   cd network-ids
+    git clone https://github.com/ngquochuy0101/network-ids-dvrcnn
+    cd network-ids-dvrcnn
    ```
 
 2. **Install dependencies**
@@ -276,8 +276,8 @@ network-ids/
 
 1. **Clone and create virtual environment**
    ```bash
-   git clone https://github.com/yourusername/network-ids.git
-   cd network-ids
+  git clone https://github.com/ngquochuy0101/network-ids-dvrcnn
+  cd network-ids-dvrcnn
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
@@ -421,8 +421,8 @@ Planned CI/CD pipeline:
 
 ```bash
 # Clone and setup
-git clone https://github.com/yourusername/network-ids.git
-cd network-ids
+git clone https://github.com/ngquochuy0101/network-ids-dvrcnn
+cd network-ids-dvrcnn
 pip install -r requirements.txt
 
 # Run application
@@ -542,11 +542,11 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @misc{network-ids-dvrcnn,
-  author = {Your Name},
-  title = {Network Intrusion Detection System using DV-RCNN},
-  year = {2024},
+  author = {Huy Nguyen },
+  title = {Dual View CNN for Rare class Robust IDS},
+  year = {2026},
   publisher = {GitHub},
-  url = {https://github.com/yourusername/network-ids}
+  url = {https://github.com/ngquochuy0101/network-ids-dvrcnn}
 }
 ```
 
@@ -563,10 +563,9 @@ If you use this code in your research, please cite:
 
 ## Contact
 
-- **Author**: [Your Name]
-- **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **LinkedIn**: [Your Profile](https://linkedin.com/in/yourprofile)
+- **Author**: [Huy Nguyen]
+- **Email**: ngquochuy4002@gmail.com  
+- **GitHub**: [@ngquochuy0101](https://github.com/ngquochuy0101   )
 
 ---
 
