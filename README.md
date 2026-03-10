@@ -167,7 +167,7 @@ The application will open in your default browser at `http://localhost:8501`
 ┌─────────────────────────────┐
 │   Window Creation           │
 │   ├─ Sliding Window (L=1)   │
-│   ├─ 1D View (D × L)         │
+│   ├─ 1D View (D × L)        │
 │   └─ 2D View (11×11 corr)   │
 └────────┬────────────────────┘
          │
@@ -235,7 +235,7 @@ Output: (batch, 5)  # Logits for 5 classes
 ```
 network-ids/
 │
-├── app.py                          # Main Streamlit application
+├── app.py                         # Main Streamlit application
 ├── dvrcnn-best.ipynb              # Model training notebook
 ├── test_mlops_optimization.py     # Comprehensive test suite
 │
@@ -251,8 +251,8 @@ network-ids/
 │   └── preprocessor.pkl           # Fitted preprocessing pipeline
 │
 ├── dataset/
-│   ├── KDDTrain+.txt             # Training data (for preprocessor fitting)
-│   └── KDDTest+.txt              # Test data (for evaluation)
+│   ├── KDDTrain+.txt              # Training data (for preprocessor fitting)
+│   └── KDDTest+.txt               # Test data (for evaluation)
 │
 └── docs/
     └── OPTIMIZATION_HISTORY.md    # Development history & optimization logs
@@ -276,8 +276,8 @@ network-ids/
 
 1. **Clone and create virtual environment**
    ```bash
-  git clone https://github.com/ngquochuy0101/network-ids-dvrcnn
-  cd network-ids-dvrcnn
+   git clone https://github.com/ngquochuy0101/network-ids-dvrcnn
+   cd network-ids-dvrcnn
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
@@ -288,121 +288,6 @@ network-ids/
    pip install pytest pytest-cov black flake8  # Additional dev tools
    ```
 
-3. **Run tests**
-   ```bash
-   python test_mlops_optimization.py
-   ```
-
-### Testing
-
-The project includes a comprehensive test suite (`test_mlops_optimization.py`) that validates:
-
-- ✅ Model loading and architecture
-- ✅ Preprocessor pipeline
-- ✅ Data loading and preprocessing
-- ✅ Window creation (1D and 2D views)
-- ✅ Inference on sample data
-- ✅ Full pipeline on test set (22,544 samples)
-- ✅ Metrics calculation (accuracy, precision, recall, F1-score)
-- ✅ Performance verification (accuracy ≥ 80%)
-
-**Run tests:**
-```bash
-python test_mlops_optimization.py
-```
-
-**Expected output:**
-```
-✅ Test 1/10 PASSED: Config initialized correctly
-✅ Test 2/10 PASSED: Model loaded successfully (d_in=121)
-✅ Test 3/10 PASSED: Preprocessor loaded
-...
-✅ Test 10/10 PASSED: Accuracy verification (82.43% ≥ 80.00%)
-
-==================== TEST SUMMARY ====================
-Total Tests: 10 | Passed: 10 | Failed: 0
-Overall Accuracy: 82.43%
-F1-Score (Weighted): 83.05% | F1-Score (Macro): 68.17%
-Inference Speed: 2,227 samples/sec
-Status: ALL TESTS PASSED ✅
-```
-
-### Code Quality
-
-The project follows these best practices:
-
-- **Type Hints**: 95% coverage on major functions
-- **Docstrings**: 100% coverage (Google style)
-- **Logging**: Centralized logging with appropriate levels
-- **Error Handling**: Comprehensive try-except blocks
-- **Configuration**: Dataclass-based config management
-- **Code Style**: PEP 8 compliant
-
----
-
-## MLOps Practices
-
-### Model Versioning
-
-- Model stored with full architecture and weights
-- Checkpoint includes: `model_state_dict`, training metadata
-- Version tracking via Git tags and model filename
-
-### Logging & Monitoring
-
-```python
-# Application logging
-logger.info("Model loaded successfully")
-logger.error("Error processing file", exc_info=True)
-
-# Metrics tracked:
-- Inference time per batch
-- Preprocessing time
-- Memory usage
-- Prediction distribution
-```
-
-### Configuration Management
-
-All hyperparameters and paths centralized in `Config` dataclass:
-
-```python
-@dataclass
-class Config:
-    device: torch.device
-    model_path: str = "model/best_model.pt"
-    n_classes: int = 5
-    window_len: int = 1
-    image_h: int = 11
-    batch_size: int = 128
-    # ... more configs
-```
-
-### Error Handling
-
-- Graceful fallback when model/preprocessor not found
-- User-friendly error messages in UI
-- Detailed logging for debugging
-
-### Testing Strategy
-
-- **Unit tests**: Individual components (preprocessing, window creation)
-- **Integration tests**: Full pipeline validation
-- **Performance tests**: Accuracy threshold validation (≥80%)
-- **Regression tests**: Ensure updates don't break functionality
-
-### Continuous Integration (Future)
-
-Planned CI/CD pipeline:
-```yaml
-# .github/workflows/test.yml
-- Automated testing on push
-- Code quality checks (flake8, black)
-- Performance regression tests
-- Docker image building
-```
-
----
 
 ## Deployment
 
@@ -411,7 +296,7 @@ Planned CI/CD pipeline:
 1. Push repository to GitHub
 2. Connect to [Streamlit Cloud](https://streamlit.io/cloud)
 3. Configure:
-   - Python version: 3.9 (via `runtime.txt`)
+   - Python version: 3.9 
    - Main file: `app.py`
 4. Deploy with one click
 
@@ -459,7 +344,7 @@ This project uses the **NSL-KDD** dataset, an improved version of KDD Cup 1999:
 
 - **Training Set**: 125,973 records
 - **Test Set**: 22,544 records  
-- **Features**: 41 (after dropping `num_outbound_cmds`)
+- **Features**: 41 (after dropping `num_outbound_cmds`, `label`,     `difficulty`,`binary`,`attack_cat`,`id`,`flow_id`)
 - **Classes**: 5 categories (Benign, DoS, Probe, R2L, U2R)
 
 **Download**: 
@@ -489,19 +374,6 @@ This project uses the **NSL-KDD** dataset, an improved version of KDD Cup 1999:
    - **Mitigation**: Provide download script or links
 
 ---
-
-## Performance Optimization
-
-Applied optimizations:
-
-- ✅ Removed all emoji/icons (professional code)
-- ✅ Added comprehensive F1-score metrics (weighted, macro, per-class)
-- ✅ Batch processing with progress tracking
-- ✅ Cached model loading (`@st.cache_resource`)
-- ✅ Type hints and docstrings for maintainability
-- ✅ Centralized configuration via dataclass
-- ✅ Production-grade logging
-
 **Results**:
 - Inference speed: 2,227 samples/sec
 - Memory efficient: Batch processing prevents OOM
@@ -519,15 +391,6 @@ Contributions are welcome! Please follow these guidelines:
 4. **Push** to branch (`git push origin feature/amazing-feature`)
 5. **Open** a Pull Request
 
-### Development Guidelines
-
-- Follow PEP 8 style guide
-- Add type hints to new functions
-- Write docstrings (Google style)
-- Update tests for new features
-- Ensure accuracy ≥ 80% on test set
-- Update README if adding features
-
 ---
 
 ## License
@@ -542,24 +405,14 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @misc{network-ids-dvrcnn,
-  author = {Huy Nguyen },
-  title = {Dual View CNN for Rare class Robust IDS},
-  year = {2026},
+  author = {Huy Nguyen, Khanh Pham},
+  title = {Mạng DVRCNN cải tiến lớp hiếm trong IDS},
+  year = {2025},
   publisher = {GitHub},
   url = {https://github.com/ngquochuy0101/network-ids-dvrcnn}
 }
 ```
 
----
-
-## Acknowledgments
-
-- **NSL-KDD Dataset**: Canadian Institute for Cybersecurity, UNB
-- **PyTorch**: Facebook AI Research
-- **Streamlit**: Streamlit Inc.
-- **Community**: Open-source ML/DL community
-
----
 
 ## Contact
 
@@ -567,23 +420,18 @@ If you use this code in your research, please cite:
 - **Email**: ngquochuy4002@gmail.com  
 - **GitHub**: [@ngquochuy0101](https://github.com/ngquochuy0101   )
 
----
 
-## Project Status
+<!-- ## Project Status -->
 
-**Current Version**: 2.0.0 (MLOps Optimized)
+<!-- **Current Version**: 2.0.0 (MLOps Optimized) -->
 
-**Roadmap**:
+<!-- **Roadmap**:
 - [ ] Docker containerization
 - [ ] CI/CD pipeline (GitHub Actions)
 - [ ] Model quantization for faster inference
 - [ ] Support for other IDS datasets (CICIDS2017, UNSW-NB15)
 - [ ] Real-time network traffic monitoring
 - [ ] REST API endpoint
-- [ ] Model retraining pipeline
+- [ ] Model retraining pipeline -->
 
 **Last Updated**: March 2026
-
----
-
-**Built with ❤️ for Network Security**
