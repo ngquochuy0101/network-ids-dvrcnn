@@ -236,11 +236,8 @@ Output: (batch, 5)  # Logits for 5 classes
 network-ids/
 │
 ├── app.py                         # Main Streamlit application
-├── dvrcnn-best.ipynb              # Model training notebook
-├── test_mlops_optimization.py     # Comprehensive test suite
-│
+├── dvrcnn-best.ipynb              # Model training notebook│
 ├── requirements.txt               # Python dependencies
-├── runtime.txt                    # Python version (3.9)
 ├── .gitignore                     # Git ignore rules
 ├── README.md                      # This file
 │
@@ -255,7 +252,7 @@ network-ids/
 │   └── KDDTest+.txt               # Test data (for evaluation)
 │
 └── docs/
-    └── OPTIMIZATION_HISTORY.md    # Development history & optimization logs
+    └── docs/DVRCNN_IDS.pdf    # Paper
 ```
 
 ### Key Files
@@ -263,7 +260,6 @@ network-ids/
 | File | Purpose | Lines |
 |------|---------|-------|
 | `app.py` | Streamlit web application | 910 |
-| `test_mlops_optimization.py` | Test suite with metrics validation | 520 |
 | `dvrcnn-best.ipynb` | Training notebook | N/A |
 | `model/best_model.pt` | Trained DV-RCNN model | 5.3 MB |
 | `plk/preprocessor.pkl` | Fitted StandardScaler + OneHotEncoder | ~1 MB |
