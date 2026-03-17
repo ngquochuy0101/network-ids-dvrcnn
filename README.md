@@ -767,12 +767,7 @@ Per-class F1:
   - U2R: 22.03%
 ```
 
-**Inference Speed**:
-- CPU (Intel i7): ~945 samples/sec
-- GPU (CUDA): ~2,227 samples/sec (2.3× speedup)
 
-
----
 
 ## Discussion
 
@@ -795,65 +790,8 @@ Per-class F1:
    - Attention weights reveal which view contributes more for each sample
    - Confusion matrix analysis guides targeted improvements
 
-### Limitations
-
-1. **U2R Performance (F1=22.03%)**:
-   - **Root cause**: Extreme class imbalance (67 samples, 0.3%)
-   - **Trade-off**: High recall (59.70%) vs. low precision (13.51%)
-   - **Proposed solutions**:
-     - Focal loss to focus on hard examples
-     - Synthetic minority oversampling (SMOTE)
-     - Cost-sensitive learning (higher penalty for U2R misclassification)
-
-2. **Window Length (L=1)**:
-   - Current implementation: Sample-level detection (no temporal context)
-   - **Future work**: Experiment with L > 1 to capture sequential attack patterns
-   - **Challenge**: Increased computational cost and memory
-
-3. **Computational Complexity**:
-   - 1.38M parameters vs. ~100K for shallow networks
-   - **Trade-off**: Higher accuracy (+1.09%) at cost of 10× more parameters
-   - **Mitigation**: Model pruning, quantization for deployment
-
-4. **Dataset-Specific**:
-   - Trained exclusively on NSL-KDD
-   - **Generalization**: Performance on other datasets (CICIDS2017, UNSW-NB15) requires validation
-   - **Transfer learning**: Fine-tuning on new datasets recommended
-
-### Future Directions
-
-1. **Address Class Imbalance**:
-   - Implement focal loss: `FL = -(1-p)^γ log(p)` (emphasizes hard examples)
-   - Generate synthetic U2R samples using SMOTE or GANs
-   - Class-weighted loss: `w_U2R = N_total / (N_classes × N_U2R)`
-
-2. **Temporal Modeling**:
-   - Increase window length (L=5, 10) to capture attack sequences
-   - Hybrid architecture: Add LSTM/GRU for long-term dependencies
-   - Evaluate on attacks with clear temporal signatures (e.g., port scanning)
-
-3. **Cross-Dataset Validation**:
-   - Test on CICIDS2017, UNSW-NB15, CIC-IDS2018
-   - Domain adaptation techniques for distribution shift
-   - Few-shot learning for new attack types
-
-4. **Model Compression**:
-   - Pruning: Remove 30-50% of weights with minimal accuracy loss
-   - Quantization: INT8 inference (4× memory reduction)
-   - Knowledge distillation: Train smaller student model
-
-5. **Explainability**:
-   - Grad-CAM visualizations for important features
-   - SHAP values for per-sample feature attribution
-   - Analyze attention weights across attack categories
-
-6. **Real-World Deployment**:
-   - Integration with network monitoring tools (Wireshark, Suricata)
-   - Streaming inference pipeline (Apache Kafka + DV-RCNN)
-   - Active learning: Update model with new labeled samples
 
 
----
 
 ## Citation
 
@@ -871,29 +809,6 @@ If you use this work in your research, please cite:
 
 **Paper**: [docs/DVRCNN_IDS.pdf](docs/DVRCNN_IDS.pdf)
 
-### Related Work
-
-**NSL-KDD Benchmark**:
-```bibtex
-@inproceedings{tavallaee2009detailed,
-  title={A detailed analysis of the KDD CUP 99 data set},
-  author={Tavallaee, Mahbod and Bagheri, Ebrahim and Lu, Wei and Ghorbani, Ali A},
-  booktitle={IEEE CISDA},
-  year={2009}
-}
-```
-
-**Attention Mechanisms in CNNs**:
-```bibtex
-@inproceedings{hu2018squeeze,
-  title={Squeeze-and-excitation networks},
-  author={Hu, Jie and Shen, Li and Sun, Gang},
-  booktitle={CVPR},
-  year={2018}
-}
-```
-
----
 
 ## Contributing
 
@@ -918,28 +833,12 @@ git commit -m "feat: Add focal loss for class imbalance"
 git push origin feature/improvement-name
 ```
 
-**Code Standards**:
-- PEP 8 compliance (use `black` formatter)
-- Type hints for function signatures
-- Docstrings (Google style)
-- Unit tests for new functionality
-
----
-
-## License
-
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file for details.
-
-**Attribution**: If using this code academically, please cite our paper (see [Citation](#citation)).
-
----
-
 ## Contact
 
 - **Authors**: Nguyen Quoc Huy, Pham Duy Khanh
 - **Email**: ngquochuy4002@gmail.com
 - **GitHub**: [@ngquochuy0101](https://github.com/ngquochuy0101)
-- **Institution**: [Your University/Institution]
+- **Institution**: SaiGon University
 
 ---
 
