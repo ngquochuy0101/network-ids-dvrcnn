@@ -936,12 +936,10 @@ This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file
 
 ## Contact
 
-- **Authors**: Nguyen Quoc Huy, Pham Xuan Khanh
+- **Authors**: Nguyen Quoc Huy, Pham Duy Khanh
 - **Email**: ngquochuy4002@gmail.com
 - **GitHub**: [@ngquochuy0101](https://github.com/ngquochuy0101)
 - **Institution**: [Your University/Institution]
 
 ---
 
-**Last Updated**: March 2026  
-**Version**: 1.0 (Research Implementation)
